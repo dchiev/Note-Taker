@@ -12,17 +12,14 @@ module.exports = function (app) {
         });
     })
 };
-app.get("/api/notes/:id", function(req, res) {
-    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    res.json(savedNotes[Number(req.params.id)]);
-});
 
 
-/* // Save Notes
+
+/// Save Notes
 app.post("/api/notes", function (req, res) {
     notes.push(req.body);
     console.log(notes);
     res.json(req.body);
 })
- */
+ 
 
