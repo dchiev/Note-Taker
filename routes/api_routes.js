@@ -6,12 +6,11 @@ var fs = require('fs');
 var app = express();
 
    // Promises
-   const writefileAsync = util.promisify(fs.writeFile);
-   const readFileAsync = util.promisify(fs.readFile);
+ 
+   
 module.exports = function(app) {
-
-
-
+    const writefileAsync = util.promisify(fs.writeFile);
+    const readFileAsync = util.promisify(fs.readFile);
 
 app.post("/api/notes", function (req, res) {
     var newNote = req.body;
