@@ -6,8 +6,10 @@ var app = express();
 
 var PORT = process.env.PORT || 5000;
 
+// Promises
 const writefileAsync = util.promisify(fs.writeFile);
 const readFileAsync = util.promisify(fs.readFile);
+
 let notes;
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,10 +21,6 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-});
-
 app.get("/api/notes", function (req, res) {
     readFileAsync(path.join(__dirname, "./db/db.json"), "utf8")
         .then(function (data) {
@@ -30,13 +28,17 @@ app.get("/api/notes", function (req, res) {
         })
 });
 
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+
 app.post("/api/notes", function (req, res) {
     var newNote = req.body;
     readFileAsync(path.join(__dirname, "./db/db.json"), "utf8")
         .then(function (data) {
             notes = JSON.parse(data);
             if (newNote.id || newNote.id === 0) {
-                let c = notes[newNote.id];
                 nowNote.title = newNote.title;
                 nowNote.text = newNote.text;
             } else {
