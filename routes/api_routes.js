@@ -3,7 +3,7 @@ var express = require("express");
 var path = require("path");
 var util = require('util');
 var fs = require('fs');
-var app = express();
+
 
 // Promises
 const writefileAsync = util.promisify(fs.writeFile);
